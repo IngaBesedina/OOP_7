@@ -5,13 +5,13 @@ import tkinter as tk
 
 
 class RainbowColor:
-    def __init__(self, root):
-        self.root = root
+    def __init__(self, master):
+        self.master = master
 
-        self.color_code_entry = tk.Entry(root)
+        self.color_code_entry = tk.Entry(master)
         self.color_code_entry.pack()
 
-        self.color_name_label = tk.Label(root)
+        self.color_name_label = tk.Label(master)
         self.color_name_label.pack()
 
         self.colors = {
@@ -25,9 +25,9 @@ class RainbowColor:
         }
 
         for color_name, color_code in self.colors.items():
-            button = tk.Button(root, width=13, text=color_name, bg=color_code, 
+            button = tk.Button(master, width=2, bg=color_code, borderwidth=0,
                                command=lambda name=color_name, code=color_code: self.set_color(name, code))
-            button.pack()
+            button.pack(side='left', padx=1)
 
     def set_color(self, color_name, color_code):
         self.color_code_entry.delete(0, tk.END)
