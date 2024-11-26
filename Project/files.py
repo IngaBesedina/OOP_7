@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -
 
 
-from tkinter import Tk, Text, BOTH, X, N, LEFT
+from tkinter import Tk, Text, BOTH, X, N, LEFT, END
 from tkinter.ttk import Frame, Button, Entry, Scrollbar
 
 
@@ -21,10 +21,12 @@ class WorkWithFiles(Frame):
         file_name = Entry(frame1, width=30)
         file_name.pack(side='left', padx=10, pady=5)
 
-        open_file = Button(frame1, text='Открыть', width=15)
+        open_file = Button(frame1, text='Открыть', width=15,
+                           command=lambda: self.open_file(file_name.get(), text))
         open_file.pack(side='left')
 
-        save_file = Button(frame1, text='Сохранить', width=15)
+        save_file = Button(frame1, text='Сохранить', width=15,
+                           command=lambda: self.save_file(file_name.get(), text))
         save_file.pack(side='left')
 
         frame2 = Frame(self)
@@ -36,13 +38,24 @@ class WorkWithFiles(Frame):
         scroll = Scrollbar(frame2, command=text.yview)
         scroll.pack(side='left', fill='y')
 
-        text.config(yscrollcommand=scroll.set) 
+        text.config(yscrollcommand=scroll.set)
+
+    @staticmethod
+    def open_file(file_name: str, text_area: Text):
+        with open(file_name, 'r') as file:
+            text_area.insert(1.0, file.read())
+
+    @staticmethod
+    def save_file(file_name: str, text_area: Text):
+        with open(file_name, 'a') as file:
+            file.write(text_area.get(1.0, END))
 
 
 def main():
     root = Tk()
     WorkWithFiles()
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
