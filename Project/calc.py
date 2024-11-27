@@ -6,7 +6,7 @@ import tkinter as tk
 
 
 class Calculator:
-    def __init__(self, master):
+    def __init__(self, master: tk.Tk):
         self.master = master
         self.master.title('Калькулятор')
 
