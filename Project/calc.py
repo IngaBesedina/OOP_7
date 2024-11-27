@@ -8,7 +8,7 @@ import tkinter as tk
 class Calculator:
     def __init__(self, master: tk.Tk):
         self.master = master
-        self.master.title('Калькулятор')
+        self.master.title("Калькулятор")
 
         self.first_number = tk.Entry(master, width=12)
         self.first_number.pack()
@@ -17,19 +17,23 @@ class Calculator:
         self.second_number.pack(pady=2)
 
         self.add_button = tk.Button(
-            master, text="+", width=13, command=self.add)
+            master, text="+", width=13, command=self.add
+        )
         self.add_button.pack(pady=2)
 
         self.sub_button = tk.Button(
-            master, text="-", width=13, command=self.sub)
+            master, text="-", width=13, command=self.sub
+        )
         self.sub_button.pack(pady=2)
 
         self.mul_button = tk.Button(
-            master, text="*", width=13, command=self.mul)
+            master, text="*", width=13, command=self.mul
+        )
         self.mul_button.pack(pady=2)
 
         self.div_button = tk.Button(
-            master, text="/", width=13, command=self.div)
+            master, text="/", width=13, command=self.div
+        )
         self.div_button.pack(pady=2)
 
         self.result_label = tk.Label(master, text="")
@@ -72,7 +76,7 @@ class Calculator:
                 self.result_label.config(text="ошибка")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = tk.Tk()
     calc = Calculator(root)
     root.mainloop()
